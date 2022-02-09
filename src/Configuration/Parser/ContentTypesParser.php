@@ -23,13 +23,13 @@ class ContentTypesParser extends BaseParser
     /** @var string defaultLocale */
     private $defaultLocale;
 
-    public function __construct(string $projectDir, Collection $generalConfig, string $defaultLocale, ?string $locales = null, string $filename = 'contenttypes.yaml')
+    public function __construct(string $boltConfigDir, Collection $generalConfig, string $defaultLocale, ?string $locales = null, string $filename = 'contenttypes.yaml')
     {
         $this->localeCodes = empty($locales) ? [] : explode('|', $locales);
         $this->generalConfig = $generalConfig;
         $this->defaultLocale = $defaultLocale;
 
-        parent::__construct($projectDir, $filename);
+        parent::__construct($boltConfigDir, $filename);
     }
 
     /**

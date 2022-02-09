@@ -24,9 +24,9 @@ abstract class BaseParser
     /** @var string[] */
     protected $parsedFilenames = [];
 
-    public function __construct(string $projectDir, string $initialFilename)
+    public function __construct(string $boltConfigDir, string $initialFilename)
     {
-        $this->fileLocator = new FileLocator([$projectDir . '/config/bolt']);
+        $this->fileLocator = new FileLocator([$boltConfigDir]);
         $this->pathResolver = new PathResolver(dirname(dirname(dirname(__DIR__))));
         $this->initialFilename = $initialFilename;
     }

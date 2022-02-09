@@ -27,6 +27,7 @@ services:
             $defaultLocale: '%locale%'
             $emailSender: '%app.notifications.email_sender%'
             $projectDir: '%kernel.project_dir%'
+            $boltConfigDir: '%env(resolve:BOLT_CONFIG_FOLDER)%'
             $publicFolder: '%bolt.public_folder%'
             $tablePrefix: '%bolt.table_prefix%'
             $rememberLifetime: '%bolt.remember_lifetime%'
@@ -168,3 +169,6 @@ services:
 
     Bolt\Api\ContentDataPersister:
         decorates: 'api_platform.doctrine.orm.data_persister'
+
+    bolt_dynamic_route_loader:
+        class: Bolt\Routing\BoltDynamicRouteLoader

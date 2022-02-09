@@ -25,20 +25,20 @@ class DetailController extends TwigAwareController implements FrontendZoneInterf
         $this->contentHelper = $contentHelper;
     }
 
-    /**
-     * @Route(
-     *     "/{contentTypeSlug}/{slugOrId}",
-     *     name="record",
-     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%"},
-     *     methods={"GET|POST"})
-     * @Route(
-     *     "/{_locale}/{contentTypeSlug}/{slugOrId}",
-     *     name="record_locale",
-     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%", "_locale": "%app_locales%"},
-     *     methods={"GET|POST"})
-     *
-     * @param string|int $slugOrId
-     */
+//    /**
+//     * @Route(
+//     *     "/{contentTypeSlug}/{slugOrId}",
+//     *     name="record",
+//     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%"},
+//     *     methods={"GET|POST"})
+//     * @Route(
+//     *     "/{_locale}/{contentTypeSlug}/{slugOrId}",
+//     *     name="record_locale",
+//     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%", "_locale": "%app_locales%"},
+//     *     methods={"GET|POST"})
+//     *
+//     * @param string|int $slugOrId
+//     */
     public function record($slugOrId, ?string $contentTypeSlug = null, bool $requirePublished = true, ?string $_locale = null): Response
     {
         if ($_locale === null && ! $this->getFromRequest('_locale', null)) {

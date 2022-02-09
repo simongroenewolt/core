@@ -132,28 +132,28 @@ class ContentEditController extends TwigAwareController implements BackendZoneIn
         return $this->renderEditor($content);
     }
 
-    /**
-     * @Route(
-     *     "/edit/{_locale}/{contentTypeSlug}/{slugOrId}",
-     *     name="bolt_edit_content_slug",
-     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%"},
-     *     methods={"GET"})
-     * @Route(
-     *     "/edit/{contentTypeSlug}/{slugOrId}",
-     *     name="bolt_edit_content_slug",
-     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%"},
-     *     methods={"GET"})
-     * @Route(
-     *     "/edit/{slugOrId}",
-     *     name="bolt_edit_content_slug",
-     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%"},
-     *     methods={"GET"})
-     * @Route(
-     *     "/edit/{_locale}/{slugOrId}",
-     *     name="bolt_edit_content_slug",
-     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%"},
-     *     methods={"GET"})
-     */
+//    /**
+//     * @Route(
+//     *     "/edit/{_locale}/{contentTypeSlug}/{slugOrId}",
+//     *     name="bolt_edit_content_slug",
+//     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%"},
+//     *     methods={"GET"})
+//     * @Route(
+//     *     "/edit/{contentTypeSlug}/{slugOrId}",
+//     *     name="bolt_edit_content_slug",
+//     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%"},
+//     *     methods={"GET"})
+//     * @Route(
+//     *     "/edit/{slugOrId}",
+//     *     name="bolt_edit_content_slug",
+//     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%"},
+//     *     methods={"GET"})
+//     * @Route(
+//     *     "/edit/{_locale}/{slugOrId}",
+//     *     name="bolt_edit_content_slug",
+//     *     requirements={"contentTypeSlug"="%bolt.requirement.contenttypes%"},
+//     *     methods={"GET"})
+//     */
     public function editFromSlug(?string $contentTypeSlug = null, $slugOrId): Response
     {
         $contentType = ContentType::factory($contentTypeSlug, $this->config->get('contenttypes'));

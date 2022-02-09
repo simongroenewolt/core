@@ -53,7 +53,10 @@ class Config
     /** @var KernelInterface */
     private $kernel;
 
-    public function __construct(string $locales, string $defaultLocale, Stopwatch $stopwatch, string $projectDir, CacheInterface $cache, string $publicFolder, ClearCacheController $clearCacheController, KernelInterface $kernel)
+    /** @var string */
+    private $boltConfigDir;
+
+    public function __construct(string $locales, string $defaultLocale, Stopwatch $stopwatch, string $projectDir, CacheInterface $cache, string $publicFolder, ClearCacheController $clearCacheController, KernelInterface $kernel, string $boltConfigDir = null)
     {
         $this->locales = $locales;
         $this->stopwatch = $stopwatch;
@@ -63,6 +66,11 @@ class Config
         $this->defaultLocale = $defaultLocale;
         $this->clearCacheController = $clearCacheController;
         $this->kernel = $kernel;
+        if ($boltConfigDir === null) {
+            // default setting
+            $boltConfigDir = $projectDir . '/config/bolt';
+        }
+        $this->boltConfigDir = $boltConfigDir;
 
         $this->data = $this->getConfig();
 
@@ -104,29 +112,29 @@ class Config
      */
     private function parseConfig(): array
     {
-        $general = new GeneralParser($this->projectDir);
+        $general = new GeneralParser($this->boltConfigDir);
 
         $config = new Collection([
             'general' => $general->parse(),
         ]);
 
-        $taxonomy = new TaxonomyParser($this->projectDir);
+        $taxonomy = new TaxonomyParser($this->boltConfigDir);
         $config['taxonomies'] = $taxonomy->parse();
 
-        $contentTypes = new ContentTypesParser($this->projectDir, $config->get('general'), $this->defaultLocale, $this->locales);
+        $contentTypes = new ContentTypesParser($this->boltConfigDir, $config->get('general'), $this->defaultLocale, $this->locales);
         $config['contenttypes'] = $contentTypes->parse();
 
-        $menu = new MenuParser($this->projectDir);
+        $menu = new MenuParser($this->boltConfigDir);
         $config['menu'] = $menu->parse();
 
         // If we're parsing the config, we'll also need to pre-initialise
         // the PathResolver, because we need to know the theme path.
         $this->pathResolver = new PathResolver($this->projectDir, $config->get('general')->get('theme'), $this->publicFolder);
 
-        $theme = new ThemeParser($this->projectDir, $this->getPath('theme'));
+        $theme = new ThemeParser($this->boltConfigDir, $this->getPath('theme'));
         $config['theme'] = $theme->parse();
 
-        $permissions = new PermissionsParser($this->projectDir);
+        $permissions = new PermissionsParser($this->boltConfigDir);
         $config['permissions'] = $permissions->parse();
 
         // @todo Add these config files if needed, or refactor them out otherwise

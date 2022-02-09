@@ -9,9 +9,9 @@ use Tightenco\Collect\Support\Collection;
 
 class GeneralParser extends BaseParser
 {
-    public function __construct(string $projectDir, string $initialFilename = 'config.yaml')
+    public function __construct(string $boltConfigDir, string $initialFilename = 'config.yaml')
     {
-        parent::__construct($projectDir, $initialFilename);
+        parent::__construct($boltConfigDir, $initialFilename);
     }
 
     /**

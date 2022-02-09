@@ -11,11 +11,11 @@ class ThemeParser extends BaseParser
     /** @var string */
     private $path;
 
-    public function __construct(string $projectDir, string $path, string $filename = 'theme.yaml')
+    public function __construct(string $boltConfigDir, string $path, string $filename = 'theme.yaml')
     {
         $this->path = $path;
 
-        parent::__construct($projectDir, $filename);
+        parent::__construct($boltConfigDir, $filename);
     }
 
     /**

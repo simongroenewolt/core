@@ -11,7 +11,7 @@ class MenuParser extends BaseParser
     /** @var array */
     private $itemBase = [];
 
-    public function __construct(string $projectDir, string $initialFilename = 'menu.yaml')
+    public function __construct(string $boltConfigDir, string $initialFilename = 'menu.yaml')
     {
         $this->itemBase = [
             'label' => '',
@@ -22,7 +22,7 @@ class MenuParser extends BaseParser
             'uri' => '',
         ];
 
-        parent::__construct($projectDir, $initialFilename);
+        parent::__construct($boltConfigDir, $initialFilename);
     }
 
     /**
